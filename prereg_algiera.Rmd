@@ -1,0 +1,227 @@
+---
+title: "Algeria Survey Pre-registration"
+author: "Sharan Grewal, Tahir Kilavuz, Robert Kubinec and Helen Milner"
+date: "April 10, 2019"
+output:
+  pdf_document: default
+  html_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE,warning=FALSE,message=FALSE)
+
+require(readr)
+require(dplyr)
+require(ggplot2)
+require(forcats)
+require(tidyr)
+require(lubridate)
+
+survey <- read_csv('data/Algeria+Politics+Survey_April+8,+2019_08.42.csv') %>% 
+  mutate(StartDate=ymd_hms(StartDate)) %>% 
+  filter(StartDate>ymd_hms("2019-04-08 12:00:00"))
+
+```
+
+## Overview
+
+We are presently conducting an online survey of political attitudes in Algeria. This survey was fielded quickly in response to growing political instability in the country. We are using a range of Facebook advertisements targeted at specific demographics to build a nationally-representative sample. We also have a subset of advertisements that are targeted specifically at the military and police officers to recruit a sub-sample from this demographic. At this stage, we have completed a pilot survey that proves that the research design is able to recruit a representative sample. We intend to continue collecting data for the next several weeks as the situation unfolds.
+
+Our intention in this research is to understand how Algerians are responding to the dramatic political events and in particular to what extent their attitudes are becoming more democratic or more authoritarian. In addition, we want to understand their political behavior during a time when relatively costly political actions, such as turning up to a protest, are relatively commonplace. As such, we also intend to field a second wave of this survey that will follow up with respondents who gave us their cell phone numbers so we could provide them a cell phone credit in exchange for completing the survey. We can use this second wave to see whether respondents who reported a higher willingness to protest did in fact do so, and whether the effect of our treatments persisted over time. 
+
+There are multiple experiments that we are considering as part of this research and that we want to pre-register here. First, we conduct an endorsement experiment that sees which Algerian leaders Algerians tend to respond to more positively. Second, we conduct an experiment that examines whether Algerians are more prone to support the regime when primed with information about the amount and type of rents they receive from the regime.
+
+We define each of these treatments in turn and provide hypotheses for each. We also add some hypotheses we want to test with our observational data. We conclude with some sample power analysis.
+
+## Endorsement Experiment
+
+Our endorsement experiment randomizes who is attributed as having spoken one of the following five texts:
+
+> "The people of Algeria are prepared for a democratic system."
+
+> "In a Muslim-majority country, non-Muslims should enjoy equal political rights as Muslims."
+
+> "A society like ours cannot maintain security if we are too concerned with human rights."
+
+> "We should respect the elder politicians because they belong to moudjahidine."
+
+> "If I had to choose, I would prefer a strong economy over a strong democracy."
+
+
+We then randomly assign attribution of these treatments to one of the following Algerian leaders:
+
+> Ahmed Gaid Salah: Chief of Staff of Algerian National Army
+
+> Ali Benflis: Long-time Algerian politician and former prime minister
+
+> Ali Belhadj: Founder of the Islamic Salvation Front
+
+> Mustapha Bouchachi: Leader of Algerian Human Rights League and former MP
+
+
+Following each statement, we ask the respondent to rate their support for the statement on a five-point Likert scale from Strongly Disagree to Strongly Agree.
+
+In terms of these treatments, we want to test the following hypotheses:
+
+> H1: Respondents with Islamic values are more likely to support Islamist statements from Islamist versus secular politicians.
+
+We can test this hypothesis by comparing support for Ali Belhadj versus others for statements 2 and 4 that relate to Islamist sympathies. We expect more Islamist respondents to react negatively to secularist politicians making these statements as they will tend to see these statements as less credible coming from these leaders because they could be disingenuine attempts to use Islam to win support.
+
+We can measure pro-Islamic sympathies by a pre-treatment question that asked how often a respondent prays per day. This question is widely used as a measure of religiosity in the Muslim world.
+
+Second, we want to know if pro-democratic attitudes among respondents correlate with greater support for pro-democratic politicians and statements. Support for statement 1 can be interpreted as pro-democratic sentiment, while support for statements 3 and 5 can be interpreted as support for anti-democratic sentiment. We can examine the following hypothesis:
+
+> H2: Respondents with pro-democratic values are more likely to support pro-democratic statements endorsed by more democratic leaders.
+
+We can test this hypothesis by using pre-treatment covariates that look at a range of respondents' views on regime change and democracy. We use both a list experiment and direct questions to ascertain whether respondents would support regime change in favor of democratization. We also ask respondents whether they participated in recent protests, and whether they intend to participate in protests. As these protest movements are largely pro-democratic, we can interpret protest behavior as providing another good measure of support for democratization. Finally, to test this we can compare support for pro-democratic statements or opposition to anti-democratic statements for Mustapha Bouchachi, the HR activist, versus the other leaders in our experiment.
+
+Finally, we are also interested in knowing overall rates of support for each of these leaders and each of these statements. We can ascertain this by using the method of Graeme, Imai and Lyall (2014) to construct a latent variable tht will provide estimates of support averaging across the measurement error of using several different indicators. These results will provide very credible estimates of support for these statements and leaders while averaging over measurement uncertainty.
+
+## Accountability Experiment
+
+Our accountability experiment tests a core part of the rentier thesis argument that the availability of oil rents facilitates authoritarianism by dampening calls for accountability. If a country's citizens had to pay taxes to cover any transfers from the state, so the argument goes, then they would express higher demands for accountability. The setting of a country experiencing the throes of a regime's possible end is an excellent place to test these arguments as for a brief period Algeria's citizens are mobilized and able to affect the course of the regime. 
+
+We are interested in testing the following two hypothesis regarding accountablity:
+
+> H3: A lighter tax burden relative to neighboring democratic countries will encourage pro-regime attitudes and actions among citizens in a dictatorship.
+
+> H4: A higher level of gasoline subsidies relative to neighboring democratic countries will encourage pro-regime attitudes and actions among citizens in a dictatorship.
+
+As Algeria receives a large share of its government revenue from hydrocarbons, Algerians have a very low price of gasoline (approximately $1.30 per gallon) and also a relatively low value-added tax burden relative to its democratic neighbor, Tunisia. We use Tunisia as an implied counterfactual by calculating the difference in VAT coverage rates, gasoline prices and taxi prices between the two countries. We employ this method because we believe that for many Algerians the word democracy will conjure up the neighboring regime of Tunisia which transitioned to democracy relatively recently (2011).
+
+To test the experiment, we first randomly assign the respondent to one of three conditions: control, tax treatment and gasoline treatment. Before the respondent answers the question, we ask them about their asset ownership across a range of categories, including houses, businesses, and cars. 
+
+We then ask respondents in the tax treatment to tell us how much they spent on products covered by the value-added tax (VAT) in the prior year in Algeria. If the respondent owns a car, we ask how much they spent on gasoline in the prior year. If the respondent does not own a car, we ask how much the respondent spent on taxis, a popular alternative form of transportation that is directly affected by the price of gas. 
+
+We then calculate a counterfactual quantity that represents how much that respondent would have spent if they had lived in Tunisia. For VAT rates, we use the difference in VAT coverage rates from a 2014 IMF study (https://www.imf.org/external/pubs/ft/sdn/2015/sdn1516.pdf). For gasoline prices we simply use publically available data for retail gasoline prices. For taxi rates we use crowd-sourcing websites that collect data from residents in these countries about how much they actually pay in taxi fares as it is difficult to compare the fare prices directly due to differing regulatory structures. 
+
+For the treated, we then show them one of the following prompts:
+
+> Based on what you entered, you paid _______ DZD for gas last year. If you lived in Tunisia, a democracy, where gas receives fewer subsidies, you would probably have spent __________ DZD on gas.
+
+> Based on what you entered, you paid __________ DZD for taxis last year. If you lived in Tunisia, a democracy, where gas receives fewer subsidies, you would probably have spent __________ DZD on taxis.
+
+> Based on what you entered, you paid __________ DZD in VAT taxes last year. If you lived in Tunisia, a democracy, you would probably have spent __________ DZD in VAT taxes.
+
+Those in the control condition do not receive a prompt.
+
+We then first ask a battery of attitudinal questions about how the respondents perceive the government. 
+
+> How would you rate the government's performance in the following areas on a scale of 1 to 10:
+
+> Providing employment for its citizens; Helping citizens obtain the necessities they need to live; Ending corruption among government officials; Reforming in response to citizens' concerns; Maintaining stability and order.
+
+Next we ask a battery of questions about respondents' future behavior:
+
+> On a scale of 1 being very unlikely and 10 most likely, are how likely are you to take the following actions in the next 3 months:
+
+> Participate in a street protest; Visit to a government official to complain about government services; Move personal funds to a bank account overseas; Transfer funds from Algerian currency to other currencies.
+
+Finally we also ask the following three questions that try to measure attitudes over regimes directly:
+
+> Please indicate whether or not you agree with the following statements:
+
+> I support democracy even if it means opposing the regime.
+
+> I want Bouteflika to step down, but I don't care if our political system stays as is or becomes a democracy.
+
+> I want Bouteflika to step down, but I don't want our country to become a democracy.
+
+The use of three different statements allow us to examine regime preferences with more nuance. By examining different patterns of answers we can ascertain whether people are truly pro-democracy or simply want President Bouteflika, who is widely unpopular, to step down.
+
+We consider the street protest and complain to a government official as expressions of behavior holding the government accountable. The other two behaviors also reflect decreasing support or confidence in the government, except that it is expressed through moving capital to hard currencies or out of the country. This capital flight can also destabilize the authoritarian regime. 
+
+We calculate differences in average responses to these questions. We are interested in all of these outcomes and will report all of them. Our prior is that we expect the attitudinal differences to be greater than the behavioral differences. We will also test whether these effects endure in a follow-up survey we will do three months following this initial survey round. 
+
+We also want to include the actual amount that respondents they would pay in VAT/gas/taxis as a key moderating variable of the treatment. In particular we want to see if there are linear and quadratic effects of paying more on the outcome.
+
+We include here our initial pilot results for this experiment by treatment condition:
+
+![](att_all.png)
+
+![](beh_all.png)
+
+![](regime_all.png)
+
+## Cooperation Experiment
+
+Even though the Algerian democratic transition attempt started with massive street protests, just like the cases of the Arab Uprisings in 2011, political elites will be more involved during the process of democracy building. Once a transition process begins, the main political actors need to cooperate with one another to secure a full democratic transition. Different groups should coexist, negotiate, compromise and cooperate to build democratic institutions (Di Palma 1990; Higley and Gunther 1992). The existing literature mostly focuses on the interaction between regime and opposition actors (Linz 1978; O’Donnell and Schmitter 1986). However, the interaction between different opposition factions is equally important.
+
+Despite the existing arguments on cooperation, there is less focus on why elites cooperate in a democratic transition process. Several experiences such as Chilean and Tunisian transitions suggest that the experience of building a successful opposition coalition under authoritarianism helps elites to overcome commitment problems by establishing organizational capital, trust, and a shared vision. When a transition starts, elites with such experiences can make stronger credible commitments to cooperation.
+
+We would like to see the impact of past experiences of working together and bridging on the willingness to cooperate. Even though this survey targets the general public, rather than the elites, linking past experiences to attitudes can provide a psychological evidence for the broader argument. 
+
+H9a: Individuals who have experience of working with rival groups are more willing to work with them again.
+H9b: Individuals who have successful experience of working with rival groups are more willing to work with them again due to the trust established between them in the earlier iterations.
+
+To test this hypothesis, we designed a priming experiment among randomly assigned three categories. We ask respondents to put themselves into the shoes of a community leader and provide a scenario in which they need to decide working with a rival group for the resolution of a community issue. We prime respondents with past experience (without mentioning any outcome) and successful past experience that establish trust among them, in order to see the impact.
+
+We are also interested in seeing how ideologies or political views factor into this relationship. Theories on bridging says that interactions with the “other” make people more tolerant and more open to compromise. Building on that, we hypothesize on the impact of bridging on cross-ideological cooperation. 
+
+H10: Among cases in which there are experiences of successful cooperation, those of them that involved bridging across different groups make individuals more willing to cooperate with ideological rivals and compromise.
+
+We similarly divide respondents into three randomly assigned groups. We give them five statements and ask them to select all the statements that involve cooperation. The five statements are same across three categories, but in one category, we frame actors as ideologically similar (bonding), in another we call them ideologically different (bridging) and in the last, we do not mention any ideological proximity among actors. Following this exercise, we ask respondents a set of questions to measure their views about political compromise, coalition governments and power distribution to test their openness to cooperation.
+
+
+## Authoritarian Performance Experiment
+
+Several micro-level explanations of support for democracy focus on more dynamic factors. According to these explanations, citizens’ political attitudes are shaped by their rational evaluations (Evans and Whitefield 1995) and political and economic expectations. Citizens form their attitudes based on the economic or political performance of the government. Satisfactory economic performance such as economic growth and low inflation tend to lead to higher support for the regime (Kotzian 2011). On the political front, citizens’ support for a regime is affected by factors such as protection of political freedoms and civil liberties, commitment to the rule of law, and control of violence (Mishler and Rose 1999).
+
+Furthermore, authoritarian breakdowns occasionally come with significant political, social, and economic transformations. The consequence-based theory of regime preferences suggests that citizens' support for or opposition to democracy depends on their perceptions of the political consequences of democracy (Benstead 2014). On the abstract level, people may desire a democratic system. However, at the same time, they are concerned about their economic and political well-being, their safety and the protection of their culture and values. Therefore, for people to desire a democratic system, they should believe that democracy can bring better conditions, or at least not worse conditions, than the status quo in these areas.
+
+Based on these theories, we would like to test people’s willingness to change to regime into a democracy, based on their experience with the authoritarian regime and expectations. As such, we hypothesize that:
+
+H11: Individuals who believe that the regime’s performance in economy, politics, society and safety is good are less likely to demand a complete regime change.
+
+We are also interested in which of these issue areas are most salient to shape people’s attitudes toward regime change. As strong authoritarian regimes promise order and safety, we expect that to be a very strong factor shaping attitudes toward regime change. Likewise, authoritarian regimes such as Algeria promise economic stability against the uncertainty of transitions and protection of customs and values in response to infiltration of foreign ideas to the society. We expect these factors to be influential as well. However, as freedoms and rights are the areas in which authoritarian regimes are weaker, we expect impact of political performance to be smaller. However, a counter-argument would suggest that in an authoritarian setting, the regime may use all the areas of performance as a full package, so that performance in different areas do not distinguish between attitudes toward the regime.
+
+H12a: The authoritarian regime’s performance in providing order and peace is more impactful than some other factors in making people less willing to change the political regime.
+
+H12b: The authoritarian regime’s performance in providing freedoms and rights is less impactful than some other factors in making people less willing to change the political regime.
+H12c: The authoritarian regime’s performance in economy, politics, society and safety make a similar impact on people’s willingness to change the political regime.
+
+We design a priming experiment based on five categories to test these hypotheses. Other than the control group, we remind respondents that the first decade under the former Bouteflika’s rule was successful in several areas based on a report. In each of the four groups, we prime respondents with economic performance, political performance, security, and protection of customs and values. The design allows us 1) to measure the difference of treatment categories from the control and 2) to measure the differences between the treatment categories, if any.
+
+
+
+## Protest Behavior
+
+Protest is a costly action that is also very destabilizing to a regime if many people participate in it. Our survey asks respondents several questions about their opinion of protests and their willingness to protest. There are existing hypotheses in the literature that we want to test in addition to others.
+
+First, Campante and Chor (2012) propose that there is an education-unemployment interaction in which people who are more educated and unemployed are those who are more likely to protest:
+
+> H5: Respondents with higher education and who are unemployed are more likely to protest and report intentions to protest.
+
+We can further test this hypothesis over time by fielding our survey again and testing for the effect specifically on those respondents who either lost or gained employment. This hypothesis test of course is potentially difficult to power as it depends on job turnover:
+
+> H6: Respondents with higher education and who obtain (or lose) employment are more likely (less likely) to protest and are more likely (less likely) to follow through on intentions to protest.
+
+We also want to see how events in the transition process affect willingness to protest. Doing so involves separating our sample into the actual date of data collection. We can consider pro-regime change events, such as President Bouteflika stepping down, versus anti-regime change events, such as a pro-regime insider gaining control over the transition process, as recently occurred. 
+
+> H7: Following pro-regime events, protesters with pro-democratic views are less likely to report intentions to protest.
+
+We are ambivalent about whether this hypothesis will be true or false. It could be that pro-regime events dampen political enthusiasm for protests because they are no longer seen as effective. Alternatively, it could be that pro-regime events enrage protesters and cause higher levels of protests.
+
+Finally, we want to test what results in people following through in their intentions. We surmise that the protesters whose goals are met, which we measure with a question in the survey, are those who are less likely to protest compared to protesters whose goals are unmet:
+
+> H8: Protesters with unmet goals are more likely to actually protest if they report that they intend to protest.
+
+# Sample Calculations
+
+We do a sample calculation for a multi-arm experiment with three treatment arms per our accountability experiment (taxes, gas, & taxi prices). We look at three sample sizes of 1000, 2000 and 5000 (the upper limit we may be able to collect). We assume that each treatment arm has a modest effect of .1, or ten percent of respondents increasing their behavior or attitudes on a binary scale. The power calculation is done using the `DeclarDesign` package where one outcome, Y_1, is the control outcome while outcomes Y_2 to Y_4 are treatment outcomes.
+
+```{r sample_calc}
+require(DesignLibrary)
+
+n1000 <- multi_arm_designer(N=1000,m_arms=4,outcome_means=c(0,rep(.1,3)))
+n2000 <- multi_arm_designer(N=2000,m_arms=4,outcome_means=c(0,rep(.1,3)))
+n5000 <- multi_arm_designer(N=5000,m_arms=4,outcome_means=c(0,rep(.1,3)))
+print("Sample Size of 1000")
+diagnose_design(n1000)
+print("Sample Size of 2000")
+diagnose_design(n2000)
+print("Sample Size of 5000")
+diagnose_design(n5000)
+```
+
+We can see that we can obtain acceptable power by the time we have a sample of 2000, and virtually perfect power when we reach a sample of 5000. For these reasons we intend to obtain a sample of at least 2000 for our main experimental results.

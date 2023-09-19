@@ -1,0 +1,489 @@
+\documentclass[12pt, letterpaper]{article}
+
+%==============Packages & Commands=================
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx} % Graphics
+\usepackage{setspace} % To set line spacing
+%\usepackage[longnamesfirst]{natbib} % For references
+\usepackage{booktabs} % For tables
+\usepackage{rotating} % For sideways tables/figures
+\usepackage{amsmath} % Some math symbols
+\usepackage[margin = 1in]{geometry}
+\usepackage{float}
+\usepackage{array}
+\usepackage{makecell}
+\usepackage[normalem]{ulem}
+\usepackage{colortbl}
+\usepackage{url}
+\urlstyle{same}
+\usepackage{appendix}
+\usepackage{multirow}
+\usepackage{dcolumn}
+\usepackage{threeparttable}
+\usepackage{siunitx}
+\newcolumntype{d}{S[input-symbols = ()]}
+\usepackage[final]{pdfpages}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\usepackage{graphicx}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+%\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\ifLuaTeX
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same} % disable monospaced font for URLs
+
+%These allow for references to subfigures
+
+%\DeclareDelayedFloatFlavor{sidewaystable}{table} %Allows endfloat to handle sidewaystable
+%\DeclareDelayedFloatFlavor{sidewaysfigure}{figure} %Allows endfloat to handle sidewaysfigure
+
+%These packages for inserting blue hyperlinks in text (and for linking in-text references to references section)
+\usepackage[bookmarks]{hyperref} %bookmarks option enables pdf bookmarks to be automatically generated
+\usepackage[usenames,dvipsnames,svgnames,table]{xcolor}
+
+% Need tikz to draw causal path diagrams
+
+%\usepackage{authblk}
+
+\usepackage{multirow,array}
+\makeatletter
+\usepackage{longtable}
+
+\usepackage[authordate,backend=biber]{biblatex-chicago}
+
+\addbibresource{references.bib}
+
+\title{Appendix for Taxes in the Time of Revolution: An Experimental Test of the Rentier State during Algeria's Hirak}
+%\author{Robert Kubinec and Helen V. Milner}
+\date{December 2021}
+
+\linespread{1.5}
+
+\begin{document}
+
+\maketitle
+
+\tableofcontents
+
+\section{Results with Disaggregated Fuel Subsidy Treatment}
+
+In this section we report our main results and our SES interaction with disaggregated groups for our fuel subsidy treatment--i.e., by looking at car owners and users of taxis separately. In Figure \ref{fig:car} we show the distribution of SES index values by car ownership. As can be seen, car owners are on average wealthier, and the poorest respondents in the survey do not have cars. As such, there is reason that the respondents may respond differently depending on whether they receive the car or taxi treatment. However, we note that conditional on owning a car, treatment assignment is still random, so the treatment effect is well-defined within these categories as the ATE is a comparison between car owners with and without treatment.
+
+
+\begin{figure}
+    \centering
+    \caption{Density of Respondents' SES by Car Ownership}
+    \includegraphics[width=.9\linewidth]{plots/plots/car_ownership_ses.pdf}
+    
+    \label{fig:car}
+\end{figure}
+
+
+Despite these wealth endowment differences, the disaggregated ATEs  are fairly close in terms of estimated effects, or at least are never of opposite signs. Notable differences are primarily among the ATE estimates that are not subset by SES. For the governance outcome ATEs in Figure \ref{belief_disag}, the car treatment did not find a positive effect on corruption while the taxi treatment did. For the accountability ATEs in Figure \ref{action_disag}, the taxi treatment showed a negative effect on protest while the car treatment showed no effect on the complain outcome. 
+
+For the SES interaction with governance outcomes in Figure \ref{belief_ses_disag}, we see that the taxi and car treatments are generally of the same sign, although the car treatment shows a stronger relationship in terms of improved governance vies among wealthier respondents than among wealthy people who received the taxi treatment. For the accountability SES interaction in Figure \ref{action_ses_disag}, the taxi and car treatments generally align, except for withdrawing currencies. For this treatment, wealthy people in the taxi condition were much more likely to report willingness to withdraw money relative to poor people, whereas there is no observed relationship in the car condition.
+
+\begin{figure}
+    \centering
+    \caption{Governance Results with Disaggregated Fuel Treatment}
+    \includegraphics[width=.7\linewidth]{plots/belief_ate_disag.png}
+    \label{belief_disag}
+\end{figure}
+
+
+\begin{figure}
+    \centering
+    \caption{Accountability Results with Disaggregated Fuel Treatment}
+    \includegraphics[width=.7\linewidth]{plots/action_ate_disag.png}
+    \label{action_disag}
+\end{figure}
+
+\begin{figure}
+    \centering
+    \caption{Governance Outcomes and SES Interaction with Disaggregated Fuel Treatment}
+    \includegraphics[width=.7\linewidth]{plots/belief_ate_varying_disag.png}
+    \label{belief_ses_disag}
+\end{figure}
+
+\begin{figure}
+    \centering
+    \caption{Accountability Outcomes and SES Interaction with Disaggregated Fuel Treatment}
+    \includegraphics[width=.7\linewidth]{plots/action_ate_varying_disag.png}
+    \label{action_ses_disag}
+\end{figure}
+
+It is difficult to assign a precise interpretation to these differences, especially as the differences between treatments was due to the necessity of providing the treatment text rather than as an investigation of differences between car owners and non-car owners. The one pattern that seems reasonably clear is that wealthier car owners showed a stronger improvement in governance outcomes vis-a-vis wealthy non-car owners. However, it is difficult to know for sure why this might be the case. Wealthy non-car owners may be more likely to be based in urban areas or have other unmeasurable reasons why they chose not to purchase a car that we cannot investigate through these comparisons.
+
+\newpage
+
+\section{Balance Tests and ATEs as Tables}
+
+In this section we look at balance of covariates by treatment conditions and also report the ATEs in tables in numeric format. We also report the ATEs for treatment conditions stratified by SES to provide more detail about this crucial moderating variable. 
+
+Table \ref{balstat} shows the proportions for several demographic covariates and also self-reported protest participation by the different treatment categories. The right-most column has $p$-values from a Chi-square test of equal proportions where the null hypothesis is that the proportions across treatment groups are all equal. The high $p$-values indicate that this null hypothesis could not be rejected. However, in addition to the test, it is apparent by examining the proportions that the values are quite close to each other across treatment categories, suggesting that the randomization was successful and covariates were balanced across groups prior to treatment.
+
+\include{balance_table}
+
+The following tables show our main results as tables instead of graphically. We also include tables with disaggregated fuel subsidy treatments (separately reported in Figures 2 and 3 in the appendix).
+
+\input{tables/belief_table}
+\input{tables/belief_table_disag}
+\input{tables/action_table}
+\input{tables/action_table_disag}
+
+\newpage
+
+Next, we show tables for our main results stratified by our SES measure. We dichotomize our SES measure into deciles as the underlying variable is continuous. 
+
+\input{tables/belief_table_deciles}
+\input{tables/action_table_deciles}
+
+\section{Simulation of Subgroup Effects}
+
+Given that the subgroup analyses were not pre-registered, we extend in this section our pre-registered power analysis to include subgroup interactions. While pre-registering the analyses would be the best option, we can use simulation evidence to understand how likely we would be to observe effects of a given magnitude. As shown in the pre-registration included below, we pre-registered a true effect size of +0.1. What is not obvious from the function we used in the `DeclareDesign` package is that the standard deviation of this effect is 1. As a result, the power analysis is comparing a Normally-distributed control distribution with a mean of 0 and an SD of 1 to a Normally-distributed treatment group with a mean of 0.1 and an SD of 1. As such, the pre-registered power analysis is very conservative as the effect amounts to $\frac{1}{10}$ of an SD. 
+
+To discuss subgroup analysis, we replicate this power analysis except that we halve the treatment group in which half the treatment group has the control distribution ($N(0,1)$) and the other half of the treatment group has a -0.1 effect. We use means of 0.5 for the control group and 0.4 for the treatment group to distinguish the analysis from the original power analysis, although this is purely for convenience and does not change the power curve. We include R code below to reproduce the simulation.
+
+To perform subgroup power calculations, we set a value of $N$ from 30 to 3,000 and take five independent samples from each value of $N$. For each $N$, we assign 25\% of observations to the group $g$ and the rest to the control group $c$. We draw the treatment distribution $g_T$ via the following specification:
+
+$$
+g_T \sim N(0.4, 1)
+$$
+
+and the control group $c$ as the following distribution:
+
+$$
+c \sim N(0.5,1)
+$$
+
+We can then define the ATE as:
+
+$$
+ATE = g_T - c
+$$
+
+We estimate the ATE as the coefficient from a linear regression of $g$ as a binary-coded variable on the simulated outcome. We also create a spurious subgroup $g'$ that is randomly assigned to 25\% of $N$. We include this subgroup in the linear regression model as a second binary indicator. We save the $p$-value and estimated coefficient for both $g$ and $g'$ for each simulation draw.
+
+R code to reproduce the simulation is shown below:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+
+\CommentTok{\# World Politics}
+\CommentTok{\# Feb 27, 2023}
+
+\FunctionTok{library}\NormalTok{(dplyr)}
+\FunctionTok{library}\NormalTok{(ggplot2)}
+\FunctionTok{library}\NormalTok{(stringr)}
+
+
+\FunctionTok{set.seed}\NormalTok{(}\DecValTok{20230227}\NormalTok{)}
+
+
+\CommentTok{\# Setup {-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}}
+
+\CommentTok{\# what is true effect size? N(0.1,1) {-} N(0,1) per pre{-}reg}
+\CommentTok{\# assume baseline rate of 0.4, treatment then moves to 0.5 only in }
+\CommentTok{\# subgroup of interest}
+\CommentTok{\# divide treatment condition into 1/2}
+\CommentTok{\# assume that noise = 1 as in original power calculation}
+
+\CommentTok{\# set up random partitions, see how many sig effects we get}
+
+\NormalTok{over\_sets\_N }\OtherTok{\textless{}{-}}\NormalTok{ parallel}\SpecialCharTok{::}\FunctionTok{mclapply}\NormalTok{(}\DecValTok{50}\SpecialCharTok{:}\DecValTok{3000}\NormalTok{, }\ControlFlowTok{function}\NormalTok{(i) \{}
+  
+  \CommentTok{\# get five estimates per N}
+  
+    \FunctionTok{lapply}\NormalTok{(}\DecValTok{1}\SpecialCharTok{:}\DecValTok{5}\NormalTok{, }\ControlFlowTok{function}\NormalTok{(it) \{}
+      
+\NormalTok{      N }\OtherTok{\textless{}{-}}\NormalTok{ i}
+      
+      \CommentTok{\# subgroup of interest}
+\NormalTok{      assign }\OtherTok{\textless{}{-}} \FunctionTok{runif}\NormalTok{(N)}\SpecialCharTok{\textless{}}\NormalTok{.}\DecValTok{25}
+\NormalTok{      treatment }\OtherTok{\textless{}{-}} \FunctionTok{ifelse}\NormalTok{(assign, }\FloatTok{0.4}\NormalTok{, }\FloatTok{0.5}\NormalTok{)}
+      
+\NormalTok{      Y }\OtherTok{\textless{}{-}} \FunctionTok{rnorm}\NormalTok{(N, treatment)}
+      
+      \CommentTok{\# second group is random partition}
+      
+\NormalTok{      assign2 }\OtherTok{\textless{}{-}} \FunctionTok{as.numeric}\NormalTok{(}\FunctionTok{runif}\NormalTok{(N)}\SpecialCharTok{\textless{}}\NormalTok{.}\DecValTok{25}\NormalTok{)}
+      
+\NormalTok{      check\_sets }\OtherTok{\textless{}{-}} \FunctionTok{summary}\NormalTok{(}\FunctionTok{lm}\NormalTok{(Y }\SpecialCharTok{\textasciitilde{}}\NormalTok{ assign }\SpecialCharTok{+}\NormalTok{ assign2))}
+      
+      \FunctionTok{tibble}\NormalTok{(}\AttributeTok{coef1=}\NormalTok{check\_sets}\SpecialCharTok{$}\NormalTok{coefficients[}\DecValTok{2}\NormalTok{,}\StringTok{\textquotesingle{}Estimate\textquotesingle{}}\NormalTok{],}
+             \AttributeTok{p\_value1=}\NormalTok{check\_sets}\SpecialCharTok{$}\NormalTok{coefficients[}\DecValTok{2}\NormalTok{,}\StringTok{\textquotesingle{}Pr(\textgreater{}|t|)\textquotesingle{}}\NormalTok{],}
+             \AttributeTok{coef2=}\NormalTok{check\_sets}\SpecialCharTok{$}\NormalTok{coefficients[}\DecValTok{3}\NormalTok{,}\StringTok{\textquotesingle{}Estimate\textquotesingle{}}\NormalTok{],}
+             \AttributeTok{p\_value2=}\NormalTok{check\_sets}\SpecialCharTok{$}\NormalTok{coefficients[}\DecValTok{3}\NormalTok{,}\StringTok{\textquotesingle{}Pr(\textgreater{}|t|)\textquotesingle{}}\NormalTok{],}
+             \AttributeTok{iter=}\NormalTok{it,}
+             \AttributeTok{N=}\NormalTok{i)}
+      
+      
+\NormalTok{    \}) }\SpecialCharTok{\%\textgreater{}\%}\NormalTok{ bind\_rows}
+  
+\NormalTok{  \},}\AttributeTok{mc.cores=}\NormalTok{parallel}\SpecialCharTok{::}\FunctionTok{detectCores}\NormalTok{()) }\SpecialCharTok{\%\textgreater{}\%}\NormalTok{ bind\_rows}
+
+\CommentTok{\# plot convergence to true estimated effect}
+
+\NormalTok{over\_sets\_N }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{filter}\NormalTok{(p\_value1}\SpecialCharTok{\textless{}}\FloatTok{0.05}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{ggplot}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{y=}\NormalTok{coef1,}
+             \AttributeTok{x=}\NormalTok{N)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_point}\NormalTok{() }\SpecialCharTok{+}
+  \FunctionTok{labs}\NormalTok{(}\AttributeTok{y=}\StringTok{"Estimated Coefficient"}\NormalTok{,}
+       \AttributeTok{x=}\StringTok{"Sample Size"}\NormalTok{,}
+       \AttributeTok{caption=}\FunctionTok{str\_wrap}\NormalTok{(}\StringTok{"Plot shows simulation draws with values of statistically significant effects of true treatment sub{-}group. Horizontal line denotes the location of the true effect size ({-} 0.1)."}\NormalTok{)) }\SpecialCharTok{+}
+  \FunctionTok{guides}\NormalTok{(}\AttributeTok{linetype=}\StringTok{"none"}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{geom\_smooth}\NormalTok{() }\SpecialCharTok{+}
+  \FunctionTok{annotate}\NormalTok{(}\AttributeTok{x=}\DecValTok{500}\NormalTok{,}\AttributeTok{y=}\SpecialCharTok{{-}}\FloatTok{0.05}\NormalTok{,}\AttributeTok{label=}\StringTok{"True Effect Size"}\NormalTok{,}\AttributeTok{geom=}\StringTok{"text"}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{geom\_hline}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{yintercept=}\FunctionTok{c}\NormalTok{(}\SpecialCharTok{{-}}\FloatTok{0.1}\NormalTok{)),}\AttributeTok{linetype=}\DecValTok{2}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{theme\_minimal}\NormalTok{()}
+
+\FunctionTok{ggsave}\NormalTok{(}\StringTok{"converge\_true.pdf"}\NormalTok{)}
+
+\CommentTok{\# how many effects are sig for random subgroup?}
+
+\FunctionTok{mean}\NormalTok{(over\_sets\_N}\SpecialCharTok{$}\NormalTok{p\_value2}\SpecialCharTok{\textless{}}\FloatTok{0.05}\NormalTok{)}
+
+\CommentTok{\# plot as function of N}
+\CommentTok{\# keep only ones where random group is significant}
+\NormalTok{over\_sets\_N }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{filter}\NormalTok{(p\_value2}\SpecialCharTok{\textless{}}\FloatTok{0.05}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{mutate}\NormalTok{(}\AttributeTok{negative=}\NormalTok{coef2}\SpecialCharTok{\textless{}}\DecValTok{0}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{ggplot}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{y=}\NormalTok{coef2,}
+           \AttributeTok{x=}\NormalTok{N)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_point}\NormalTok{() }\SpecialCharTok{+}
+  \FunctionTok{labs}\NormalTok{(}\AttributeTok{y=}\StringTok{"Estimated Coefficient"}\NormalTok{,}
+       \AttributeTok{x=}\StringTok{"Sample Size"}\NormalTok{,}
+       \AttributeTok{caption=}\FunctionTok{str\_wrap}\NormalTok{(}\StringTok{"Plot shows simulation draws with values of statistically significant effects of random (spurious) sub{-}groups. Horizontal line denotes the location of the true effect size of 0."}\NormalTok{)) }\SpecialCharTok{+}
+  \FunctionTok{guides}\NormalTok{(}\AttributeTok{linetype=}\StringTok{"none"}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{geom\_smooth}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{linetype=}\NormalTok{negative)) }\SpecialCharTok{+}
+  \FunctionTok{annotate}\NormalTok{(}\AttributeTok{x=}\DecValTok{500}\NormalTok{,}\AttributeTok{y=}\SpecialCharTok{{-}}\FloatTok{0.05}\NormalTok{,}\AttributeTok{label=}\StringTok{"True Effect Size"}\NormalTok{,}\AttributeTok{geom=}\StringTok{"text"}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{geom\_hline}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{yintercept=}\DecValTok{0}\NormalTok{),}\AttributeTok{linetype=}\DecValTok{2}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{theme\_minimal}\NormalTok{()}
+  
+\FunctionTok{ggsave}\NormalTok{(}\StringTok{"effect\_size\_false\_pos.pdf"}\NormalTok{)}
+
+\CommentTok{\# now see what largest effect we can get from 100k simulation draws}
+\CommentTok{\# with an N of 3000 (subgroup of interest = 1/2 T or 750)}
+\CommentTok{\# this will take some time to run}
+
+\NormalTok{over\_sets\_big }\OtherTok{\textless{}{-}}\NormalTok{ parallel}\SpecialCharTok{::}\FunctionTok{mclapply}\NormalTok{(}\DecValTok{1}\SpecialCharTok{:}\DecValTok{100000}\NormalTok{, }\ControlFlowTok{function}\NormalTok{(i) \{}
+  
+  \CommentTok{\# assign some other units to a group that were not in the subgroup of interest}
+  
+\NormalTok{  N }\OtherTok{\textless{}{-}} \DecValTok{3000}
+\NormalTok{  assign }\OtherTok{\textless{}{-}} \FunctionTok{runif}\NormalTok{(N)}\SpecialCharTok{\textless{}}\NormalTok{.}\DecValTok{25}
+\NormalTok{  treatment }\OtherTok{\textless{}{-}} \FunctionTok{ifelse}\NormalTok{(assign, }\FloatTok{0.4}\NormalTok{, }\FloatTok{0.5}\NormalTok{)}
+  
+\NormalTok{  Y }\OtherTok{\textless{}{-}} \FunctionTok{rnorm}\NormalTok{(N, treatment)}
+  
+  \CommentTok{\# second group is random partition}
+  
+\NormalTok{  assign2 }\OtherTok{\textless{}{-}} \FunctionTok{as.numeric}\NormalTok{(}\FunctionTok{runif}\NormalTok{(N)}\SpecialCharTok{\textless{}}\NormalTok{.}\DecValTok{25}\NormalTok{)}
+  
+\NormalTok{  check\_sets }\OtherTok{\textless{}{-}} \FunctionTok{summary}\NormalTok{(}\FunctionTok{lm}\NormalTok{(Y }\SpecialCharTok{\textasciitilde{}}\NormalTok{ assign }\SpecialCharTok{+}\NormalTok{ assign2))}
+  
+  \FunctionTok{tibble}\NormalTok{(}\AttributeTok{coef1=}\NormalTok{check\_sets}\SpecialCharTok{$}\NormalTok{coefficients[}\DecValTok{2}\NormalTok{,}\StringTok{\textquotesingle{}Estimate\textquotesingle{}}\NormalTok{],}
+         \AttributeTok{p\_value1=}\NormalTok{check\_sets}\SpecialCharTok{$}\NormalTok{coefficients[}\DecValTok{2}\NormalTok{,}\StringTok{\textquotesingle{}Pr(\textgreater{}|t|)\textquotesingle{}}\NormalTok{],}
+         \AttributeTok{coef2=}\NormalTok{check\_sets}\SpecialCharTok{$}\NormalTok{coefficients[}\DecValTok{3}\NormalTok{,}\StringTok{\textquotesingle{}Estimate\textquotesingle{}}\NormalTok{],}
+         \AttributeTok{p\_value2=}\NormalTok{check\_sets}\SpecialCharTok{$}\NormalTok{coefficients[}\DecValTok{3}\NormalTok{,}\StringTok{\textquotesingle{}Pr(\textgreater{}|t|)\textquotesingle{}}\NormalTok{],}
+         \AttributeTok{iter=}\NormalTok{i)}
+  
+  
+\NormalTok{\},}\AttributeTok{mc.cores=}\NormalTok{parallel}\SpecialCharTok{::}\FunctionTok{detectCores}\NormalTok{()) }\SpecialCharTok{\%\textgreater{}\%}\NormalTok{ bind\_rows}
+
+
+\FunctionTok{ggplot}\NormalTok{(}\FunctionTok{filter}\NormalTok{(over\_sets\_big,p\_value2}\SpecialCharTok{\textless{}}\FloatTok{0.05}\NormalTok{),}
+       \FunctionTok{aes}\NormalTok{(}\AttributeTok{x=}\NormalTok{coef2)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_histogram}\NormalTok{() }\SpecialCharTok{+}
+  \FunctionTok{geom\_vline}\NormalTok{(}\AttributeTok{xintercept=}\FloatTok{0.1}\NormalTok{,}\AttributeTok{linetype=}\DecValTok{2}\NormalTok{, }\AttributeTok{colour=}\StringTok{"red"}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{geom\_vline}\NormalTok{(}\AttributeTok{xintercept=}\SpecialCharTok{{-}}\FloatTok{0.1}\NormalTok{,}\AttributeTok{linetype=}\DecValTok{2}\NormalTok{, }\AttributeTok{colour=}\StringTok{"red"}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{theme\_minimal}\NormalTok{() }\SpecialCharTok{+}
+  \FunctionTok{labs}\NormalTok{(}\AttributeTok{y=}\StringTok{"Estimated Coefficient"}\NormalTok{,}\AttributeTok{x=}\StringTok{""}\NormalTok{,}
+       \AttributeTok{caption=}\FunctionTok{str\_wrap}\NormalTok{(}\StringTok{"Plot shows 100,000 simulation draws of the effect of a random (spurious) sub{-}group. Red line denotes the location of the true treatment effect size (+/{-} 0.1)."}\NormalTok{)) }
+
+\FunctionTok{ggsave}\NormalTok{(}\StringTok{"big\_sim.pdf"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+We show the convergence in estimated $\hat{ATE}$ of the simulation to the true subgroup effect in Figure \ref{converge}. This plot shows all of the draws from the simulation that had statistically significant estimates for the subgroup $g$. The figure reveals that by an $N$ of 3,000, any statistically significant result for the subgroup effect will be very close to the true effect, and generally in the interval $[0.8,0.3]$. This strong convergence behavior is reassuring as it shows that our subgroup analysis is likely to be highly powered even when splitting the treatment group in half.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=.7\linewidth]{plots/converge_true.pdf}
+    \caption{Convergence of Statistically Significant Draws to the True Effect Size}
+    \label{converge}
+\end{figure}
+
+However, we want to consider the situation in which these effects could be affected by sampling variation due to the phenomenon known as the ``garden of forking paths." In other words, by selecting one out of potentially very many groups, did we accidentally capture random noise as opposed to real heterogeneity in the treatment? We know that statistically significant effects can emerge by chance alone. Given a $p$-value threshold of 0.05, approximately 1 out of 20 results will be statistically significant even when the true effect is 0. We note that this holds true in our simulation as well--4.9\% of coefficients for $g'$ were below the $p$-value threshold. As such, it might seem that very plausible that our subgroup analysis could simply be random noise as we did not pre-register the specific subgroup in question. 
+
+However, while the ratio of false positives will remain constant with $N$, the size of false positives will not. As Figure \ref{converge} shows, statistically significant estimates of the true effect size become accurate as $N$ increases, and the same holds for estimates of the spurious sub-group $g'$--i.e., as $N$ grows, false positive results will converge (in the limit) to 0. We can examine this from our simulation by plotting statistically significant coefficients for $g'$ as a function of $N$ in Figure \ref{fconverge}.
+
+\begin{figure}
+    \caption{Convergence of False Positive Results to Zero as $N$ Increases}
+    \centering
+    \includegraphics[width=.7\linewidth]{plots/effect_size_false_pos.pdf}
+    \label{fconverge}
+\end{figure}
+
+The figure shows that above 1,000, false positive results from $g'$ become quite small. At $N$ of 3,000, which is the amount of survey data actually collected, it is quite improbably to see a false positive noticeably larger than the quite small pre-registered effect size. As such, while we know that it is quite possible to find statistically significant results due to ``p-hacking", these results are almost certainly quite small given the size of the sample. We examine this more closely by simulating the same power analysis with a fixed $N$ of 3,000 and 100,000 independent draws. We plot in Figure \ref{100k} all statistically-significant results for the spurious group $g'$. As can be seen, we do not observe any draws greater than +/-0.2, or roughly twice the true effect size.
+
+\begin{figure}
+    \centering
+    \caption{Statistically Significant Results for Spurious Group $g'$ and $N$ of 3,000}
+    \includegraphics[width=0.7\linewidth]{plots/big_sim.pdf}
+    \label{100k}
+\end{figure}
+
+For these reasons, we note that finding a significant effect solely through the garden of forking paths is something that can happen in our data, and for that reason we should be cautious when interpreting treatment heterogeneity that was not pre-registered. At the same time, we note that it is very improbable we would observe very large subgroup effects through random noise alone given the size of the sample. We note this is particularly true for the protest intentions sub-group analysis, as the scale of the effect--up to 1.5 of an SD--would be statistically very unlikely to observe. For these reasons, we believe that the estimated coefficient is worthy of consideration even in the absence of pre-registration.
+
+\section{Additional Treatment Moderation Results}
+
+\subsection*{Opinion about Protests as a Moderator}
+
+While we believe that SES is the most theoretically relevant treatment moderator, we also look at other potential moderators. Our intention here is not to engage in a fishing expedition--with a large sample, it is often possible to find substantively trivial yet statistically significant effects--but rather to provide a baseline for the strength of the SES moderator. We first examine possible treatment heterogeneity by the preferences that respondents held about the Hirak movement before observing the treatment. Figures \ref{fig:beliefprot} and \ref{fig:actionprot} show the governance and accountability results respectively for the treatments by subgroups defined by respondents' answers to the question, ``do you support or oppose the goals of the current wave of protests in Algeria?" As is evident, there are more respondents who reported supporting the  protests, and as such those categories have more precise estimates. 
+
+\begin{figure}
+    \centering
+    \includegraphics[width=\linewidth]{plots/belief_prot_int.png}
+    \caption{ATEs Conditioned by Opinion About Protests, Governance Outcomes}
+    \label{fig:beliefprot}
+\end{figure}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=\linewidth]{plots/action_prot_int.png}
+    \caption{ATEs Conditioned by Opinion About Protests, Accountability Outcomes}
+    \label{fig:actionprot}
+\end{figure}
+
+On the whole, the results show that opinion about protests has a moderating effect on governance but not accountability, at least in general. The governance results show that the positive effects on governance hold for those who support the protests; i.e., their views of the government's performance increase approximately +0.2 to +0.5 on average. By contrast, those who oppose the protests show negative effects in response to the treatment; however, it is somewhat difficult to make firm conclusions as the effects are imprecisely estimated. For accountability measures, there do not appear to be clear patterns other than for the outcome of moving funds overseas. Those who opposed the protests were much less likely, between -1 and -2 points, to report wanting to move funds overseas. While intriguing, and fairly precisely estimated, it is difficult to comment on this particular finding as the other subgroups do not show clear patterns across protest opinion.
+
+\subsection*{Opinion about Corruption as a Moderator}
+
+Next we examine beliefs about corruption in the government as a potential moderator of the treatment. We examine respondent opinions about corruption because it is an important factor in how respondents might evaluate the rentier state: if they believe the rentier state is less corrupt, they may also assess its redistributive performance more positively. Figures \ref{fig:beliefcorr} and \ref{fig:actioncorr} show the results for governance and accountability outcomes respectively subset by respondents' opinions about the level of corruption in government (question: ``In your opinion, what is the level of corruption among government officials in Algeria today?"). In a similar pattern to the protest support moderator, those who believe that corruption is quite high show stronger effects from the treatment for governance outcomes. Again, there do not appear to be very clear patterns for the accountability outcomes, with substantial variability across treatments within outcomes. 
+ 
+\begin{figure}
+    \centering
+    \includegraphics[width=\linewidth]{plots/belief_corr_int.png}
+    \caption{ATEs Conditioned by Opinion About Government Corruption, Governance Outcomes}
+    \label{fig:beliefcorr}
+\end{figure}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=\linewidth]{plots/action_corr_int.png}
+    \caption{ATEs Conditioned by Opinion About Government Corruption, Accountability Outcomes}
+    \label{fig:actioncorr}
+\end{figure}
+
+\newpage
+
+\section{Treatment Modifier Results}
+
+Figure \ref{valid} shows the interaction coefficients for the subset of the sample (4,295 respondents) for which the treatment modifier, shown below, was randomly included in 50\% of the treatments. As can be seen, the treatment modifier did not appear to either reduce or increase the potency of the treatment, suggesting that the simpler wording was able to capture the nature of the trade-off between authoritarian Algeria and democratic Tunisia.
+
+\begin{quotation}
+\textbf{Treatment modifier:} However, Tunisia also has free and fair elections where people can hold politicians accountable.
+\end{quotation}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\linewidth]{plots/treat_mod_check.png}
+    \caption{Coefficient Plots for Treatment Modifier Validity Check}
+    \label{valid}
+\end{figure}
+
+\section{Discrimination Values for SES Model}
+
+Figure \ref{2pl} shows the discrimination parameter for each covariate in the SES ideal point model, which is a variant of the 2-Pl item response theory model. A higher positive discrimination indicates the covariate predicts SES more strongly; whereas, a negative value indicates the covariate predicts less SES more strongly. A value of zero indicates no relationship to SES.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=.8\linewidth]{plots/discrim.png}
+    \caption{Discrimination Values for Covariates in SES Ideal Point Model}
+    \label{2pl}
+\end{figure}
+
+\section{Human Subjects Ethics}
+ Our study was approved by the relevant university Internal Review Boards. To protect respondent confidentiality, responses were anonymous, except for the possibility of respondents providing a mobile number to which we could send a mobile credit (approx \$1 USD) as payment. Payment was reasonable considering the time to complete the survey was approximately twenty minutes. 
+
+ All data were stored either in Qualtrics or in encrypted cloud-hosted storage. All respondents were citzens or residents of Algeria who were over 18, and consent was required in the survey instrument. As the treatment was informational, it did not provide unique benefits to respondents, and it was also very unlikely to directly cause harm. 
+
+\section{Pre-registration}
+
+Below we append our original pre-registation. The experiment for this paper is in the ``Accountability Experiment" section, which is followed by a power analysis.
+
+\includepdf[pages=-]{prereg_algiera.pdf}
+
+
+
+\section{Model Coefficients}
+
+In this section I report the unadjusted model coefficients used to create the MRP-adjusted predictions in the main paper. Each table corresponds with a different figure in the main report.
+
+\input{tables/belief_ate}
+\input{tables/action_ate}
+\input{tables/belief_int_ate}
+\input{tables/action_int_ate}
+\input{tables/belief_int_prot_ate}
+\input{tables/action_int_prot_ate}
+\input{tables/belief_int_corr_ate}
+\input{tables/action_int_corr_ate}
+
+
+
+\end{document}
